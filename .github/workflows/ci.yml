@@ -1,0 +1,24 @@
+name: React build
+on: 
+  push:                               
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: main
+        uses: actions/checkout@main
+      - name: cache
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+      - name: npm install 
+        run: npm install
+      - name: build
+        run: npm run build
