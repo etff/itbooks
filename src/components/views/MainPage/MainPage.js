@@ -9,7 +9,7 @@ function MainPage(props) {
   useEffect(() => {
     const endpoint = `api/v1/books/popular`;
     fetchBooks(endpoint);
-  }, []);
+  }, [books]);
 
   const fetchBooks = (endpoint) => {
     fetch(endpoint)
