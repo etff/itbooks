@@ -1,5 +1,4 @@
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import auth from "../../hoc/auth";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Header from "./commons/Header";
 import MainPage from "./MainPage/MainPage";
