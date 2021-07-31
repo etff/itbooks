@@ -1,18 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import GridCards from "../commons/GridCards";
 import { Row } from "antd";
 import Helmet from "react-helmet";
-// import axios from "axios";
+import axios from "axios";
 
 function MainPage() {
-  const books = null;
+  const [books, setBooks] = useState([]);
 
-  // useEffect(() => {
-  //   //const endpoint = `api/v1/books/popular`;
-  //   // axios.get("api/v1/books/popular").then((response) => {
-  //   //   setBooks([...books, ...response.data.item]);
-  //   // });
-  // }, []);
+  useEffect(() => {
+    //const endpoint = `api/v1/books/popular`;
+    axios.get("api/v1/books/popular").then((response) => {
+      setBooks([...books, ...response.data.item]);
+    });
+  }, [books]);
 
   return (
     <>
