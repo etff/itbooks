@@ -2,14 +2,14 @@ name: React build
 on: 
   push:     
     branches:
-      - develop
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: develop
-        uses: actions/checkout@develop
+      - name: main
+        uses: actions/checkout@main
 
       - name: npm install
         run: npm install
