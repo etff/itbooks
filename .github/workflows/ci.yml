@@ -1,15 +1,23 @@
-name: React build
+name: build
 on: 
   push:     
     branches:
       - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: main
         uses: actions/checkout@main
+
+      - name: Cache node modules      
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
 
       - name: npm install
         run: npm install
