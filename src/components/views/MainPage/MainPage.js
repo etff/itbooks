@@ -8,11 +8,12 @@ function MainPage() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    //const endpoint = `api/v1/books/popular`;
-    axios.get("api/v1/books/popular").then((response) => {
-      setBooks([...books, ...response.data.item]);
-    });
-  }, [books]);
+    const fetchData = async () => {
+      const result = await axios("api/v1/books/popular");
+      setBooks([...books, ...result.data.item]);
+    };
+    fetchData();
+  }, []);
 
   return (
     <>
