@@ -1,5 +1,13 @@
+import AppRouter from "./components/views/Router";
+import GlobalStyles from "./GlobalStyles";
+
 function App() {
-  return <div className="App"></div>;
+  return (
+    <>
+      <AppRouter />
+      <GlobalStyles />
+    </>
+  );
 }
 
 export default App;
