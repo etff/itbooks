@@ -9,10 +9,9 @@ function MainPage() {
 
   useEffect(() => {
     //const endpoint = `api/v1/books/popular`;
-
-    axios.get("api/v1/books/popular").then((response) => {
-      setBooks([...books, ...response.data.item]);
-    });
+    // axios.get("api/v1/books/popular").then((response) => {
+    //   setBooks([...books, ...response.data.item]);
+    // });
   }, []);
 
   return (
