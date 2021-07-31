@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import GridCards from "../commons/GridCards";
 import { Row } from "antd";
 import Helmet from "react-helmet";
-import axios from "axios";
+// import axios from "axios";
 
 function MainPage() {
   const [books, setBooks] = useState([]);
