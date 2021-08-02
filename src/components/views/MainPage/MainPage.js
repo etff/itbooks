@@ -3,6 +3,7 @@ import GridCards from "../commons/GridCards";
 import { Row } from "antd";
 import Helmet from "react-helmet";
 import axios from "axios";
+import Recommend from "./sections/Recommend";
 
 function MainPage() {
   const [books, setBooks] = useState([]);
@@ -10,7 +11,7 @@ function MainPage() {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios("api/v1/books/popular");
-      setBooks([...books, ...result.data.item]);
+      setBooks(result.data.item);
     };
     fetchData();
   }, []);
@@ -22,7 +23,11 @@ function MainPage() {
       </Helmet>
       <div style={{ width: "100%", margin: "0" }}>
         <div style={{ width: "90%", margin: "1rem auto" }}>
-          <h2 style={{ color: "white" }}>IT 부분 베스트 셀러</h2>
+          <Recommend />
+
+          <h2 style={{ color: "white", margin: "1rem auto" }}>
+            IT 부분 베스트 셀러
+          </h2>
           <hr />
           <Row gutter={[16, 16]}>
             {books &&
@@ -33,6 +38,7 @@ function MainPage() {
                     image={book.coverLargeUrl ? book.coverLargeUrl : null}
                     bookId={book.itemId}
                     title={book.title}
+                    author={book.author}
                   />
                 </React.Fragment>
               ))}

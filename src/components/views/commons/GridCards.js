@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Col } from "antd";
+import { Col, Space } from "antd";
 
 function GridCards(props) {
   if (props.mainPage) {
@@ -13,6 +13,9 @@ function GridCards(props) {
               src={props.image}
               alt={props.title}
             />
+            <Space>
+              {props.title} | {props.author}
+            </Space>
           </div>
         </Link>
       </Col>
