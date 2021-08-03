@@ -40,19 +40,21 @@ function Recommend() {
               <img src={item.coverSmallUrl} alt={item.title} width="100%" />
             }
             key={item.itemId}
+            style={{ margin: "1rem" }}
           >
             <>
-              <Title>{item.title}</Title>
-              <Title level={5}>
+              <Title style={{ margin: "1rem" }}>{item.title}</Title>
+              <Title level={5} style={{ margin: "1rem" }}>
                 <Space>
                   {item.author} | {item.publisher}
                 </Space>
               </Title>
               <Paragraph
+                style={{ margin: "1rem" }}
                 ellipsis={
                   ellipsis
                     ? {
-                        rows: 5,
+                        rows: 4,
                         expandable: true,
                         symbol: "more",
                       }
