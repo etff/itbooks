@@ -4,8 +4,9 @@ import axios from "axios";
 import styled from "styled-components";
 import BookInfo from "./sections/BookInfo";
 import Loader from "../commons/Loader";
-
+import { MessageOutlined, LikeOutlined, StarOutlined } from "@ant-design/icons";
 import Helmet from "react-helmet";
+import { Link } from "react-router-dom";
 const { Title } = Typography;
 
 const Container = styled.div`
@@ -43,12 +44,24 @@ const ItemContainer = styled.div`
   margin: 20px 0;
 `;
 
+const LikeStatus = styled.div`
+  margin-top: 10px;
+  color: white;
+`;
+
 const Overview = styled.p`
-  font-size: 12px;
+  font-size: 14px;
   opacity: 0.7;
   line-height: 1.5;
   width: 50%;
 `;
+
+const IconText = ({ icon, text }) => (
+  <Space>
+    {React.createElement(icon)}
+    {text}
+  </Space>
+);
 
 function BookDetail(props) {
   const bookId = props.match.params.bookId;
@@ -87,8 +100,28 @@ function BookDetail(props) {
               <Title style={{ color: "white" }}>{book.title}</Title>
               <ItemContainer>
                 <Space>
-                  {book.author} | {book.publisher}
+                  {book.author} | {book.publisher} |{" "}
+                  <a
+                    href={`https://book.naver.com/search/search.nhn?serviceSm=advbook.basic&ic=service.summary&isbn=${book.isbn}`}
+                  >
+                    링크
+                  </a>
                 </Space>
+                <LikeStatus>
+                  <Space>
+                    <IconText
+                      icon={StarOutlined}
+                      text="156"
+                      key="list-vertical-star-o"
+                    />
+                    |
+                    <IconText
+                      icon={LikeOutlined}
+                      text="156"
+                      key="list-vertical-like-o"
+                    />
+                  </Space>
+                </LikeStatus>
               </ItemContainer>
               <Overview>{book.description}</Overview>
             </Data>
