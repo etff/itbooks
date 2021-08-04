@@ -12,14 +12,8 @@ const Container = styled.div`
   margin-top: 20px;
 `;
 
-const override = css`
-  display: block;
-  margin: 0 auto;
-  border-color: red;
-`;
-
 export default () => (
   <Container>
-    <HashLoader styled={override} color={"4A90E2"} size={150} />
+    <HashLoader color={"4A90E2"} size={150} />
   </Container>
 );
