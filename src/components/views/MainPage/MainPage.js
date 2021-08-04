@@ -5,15 +5,24 @@ import Helmet from "react-helmet";
 import axios from "axios";
 import Loader from "../commons/Loader";
 import Recommend from "./sections/Recommend";
+import styled from "styled-components";
+
+const Subject = styled.h2`
+  margin: 1rem auto;
+  color: white;
+`;
 
 function MainPage() {
-  const [books, setBooks] = useState([]);
+  const [popularBooks, setPopularBooks] = useState([]);
+  const [newBooks, setNewBooks] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios("api/v1/books/popular");
-      setBooks(result.data.item);
+      const popularResult = await axios("api/v1/books/popular");
+      const newBookResults = await axios("api/v1/books/new");
+      setPopularBooks(popularResult.data.item);
+      setNewBooks(newBookResults.data.item);
       setLoading(false);
     };
     fetchData();
@@ -36,18 +45,32 @@ function MainPage() {
             </Helmet>
             <Recommend />
 
-            <h2 style={{ color: "white", margin: "1rem auto" }}>
-              IT 부분 베스트 셀러
-            </h2>
+            <Subject>IT 부분 베스트 셀러</Subject>
             <hr />
             <Row gutter={[16, 16]}>
-              {books &&
-                books.map((book, index) => (
-                  <React.Fragment key={index}>
+              {popularBooks &&
+                popularBooks.map((book, index) => (
+                  <React.Fragment key={book.isbn}>
                     <GridCards
                       mainPage
                       image={book.coverLargeUrl ? book.coverLargeUrl : null}
-                      bookId={book.itemId}
+                      bookId={book.isbn}
+                      title={book.title}
+                      author={book.author}
+                    />
+                  </React.Fragment>
+                ))}
+            </Row>
+            <Subject>IT 신간</Subject>
+            <hr />
+            <Row gutter={[16, 16]}>
+              {newBooks &&
+                newBooks.map((book, index) => (
+                  <React.Fragment key={book.isbn}>
+                    <GridCards
+                      mainPage
+                      image={book.coverLargeUrl ? book.coverLargeUrl : null}
+                      bookId={book.isbn}
                       title={book.title}
                       author={book.author}
                     />

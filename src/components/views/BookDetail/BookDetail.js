@@ -6,6 +6,7 @@ import BookInfo from "./sections/BookInfo";
 import Loader from "../commons/Loader";
 
 import Helmet from "react-helmet";
+import { Link } from "react-router-dom";
 const { Title } = Typography;
 
 const Container = styled.div`
@@ -87,7 +88,12 @@ function BookDetail(props) {
               <Title style={{ color: "white" }}>{book.title}</Title>
               <ItemContainer>
                 <Space>
-                  {book.author} | {book.publisher}
+                  {book.author} | {book.publisher} |{" "}
+                  <a
+                    href={`https://book.naver.com/search/search.nhn?serviceSm=advbook.basic&ic=service.summary&isbn=${book.isbn}`}
+                  >
+                    링크
+                  </a>
                 </Space>
               </ItemContainer>
               <Overview>{book.description}</Overview>
