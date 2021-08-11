@@ -7,8 +7,9 @@ import Loader from "../commons/Loader";
 import Recommend from "./sections/Recommend";
 import styled from "styled-components";
 
-const Subject = styled.h2`
+const Subject = styled.div`
   margin: 1rem auto;
+  font-size: 20px;
   color: white;
 `;
 
@@ -35,7 +36,7 @@ function MainPage() {
           <Helmet>
             <title>Loading</title>
           </Helmet>
-          <Loader />{" "}
+          <Loader />
         </>
       ) : (
         <div style={{ width: "100%", margin: "0" }}>
