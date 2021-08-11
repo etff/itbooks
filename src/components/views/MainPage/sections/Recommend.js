@@ -45,9 +45,7 @@ function Recommend() {
             <>
               <Title style={{ margin: "1rem" }}>{item.title}</Title>
               <Title level={5} style={{ margin: "1rem" }}>
-                <Space>
-                  {item.author} | {item.publisher}
-                </Space>
+                {item.author}
               </Title>
               <Paragraph
                 style={{ margin: "1rem" }}
