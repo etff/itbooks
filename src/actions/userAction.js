@@ -52,6 +52,5 @@ export function logoutUser() {
 
   return {
     type: LOGOUT_USER,
-    payload: request,
   };
 }

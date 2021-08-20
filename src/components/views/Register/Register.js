@@ -4,7 +4,6 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { registerUser } from "../../../actions/userAction";
 import { useDispatch } from "react-redux";
-import styled from "styled-components";
 import { Form, Input, Button, Row, Col, message, Typography } from "antd";
 import Helmet from "react-helmet";
 const { Title } = Typography;
@@ -63,7 +62,6 @@ function Register(props) {
           };
 
           dispatch(registerUser(dataToSubmit)).then((response) => {
-            console.log(response, "response");
             if (response.payload.status === 201) {
               props.history.push("/login");
             } else {

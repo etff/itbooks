@@ -15,9 +15,13 @@ const AppRouter = () => {
       <>
         <Header />
         <Switch>
-          <Route exact path="/" component={MainPage} />
-          <Route exact path="/book/:bookId" component={BookDetail} />
-          <Route exact path="/search" component={Search} />
+          <Route exact path="/" component={Auth(MainPage, null)} />
+          <Route
+            exact
+            path="/book/:bookId"
+            component={Auth(BookDetail, null)}
+          />
+          <Route exact path="/search" component={Auth(Search, null)} />
           <Route exact path="/register" component={Auth(Register, false)} />
           <Route exact path="/login" component={Auth(Login, false)} />
         </Switch>

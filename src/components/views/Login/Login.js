@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import { loginUser } from "../../../actions/userAction";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { Form, Input, Button, Checkbox, Typography, Row, Col } from "antd";
+import { Form, Input, Button, Typography, Row, Col } from "antd";
 import { useDispatch } from "react-redux";
 import Helmet from "react-helmet";
 
@@ -36,7 +36,6 @@ function Login(props) {
 
           dispatch(loginUser(dataToSubmit))
             .then((response) => {
-              console.log(response);
               if (response.payload.accessToken) {
                 window.localStorage.setItem(
                   "token",

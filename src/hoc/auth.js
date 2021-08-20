@@ -9,13 +9,11 @@ export default function (SpecificComponent, option, adminRoute = null) {
 
     useEffect(() => {
       dispatch(auth()).then((response) => {
-        console.log(response, "response");
         if (!response.payload.auth) {
           if (option) {
             props.history.push("/login");
           }
         } else {
-          console.log("logeed in");
           if (adminRoute && !response.payload.isAdmin) {
             props.history.push("/");
           } else {
