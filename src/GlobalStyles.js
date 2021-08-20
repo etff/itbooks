@@ -16,6 +16,15 @@ const globalStyles = createGlobalStyle`
         color:white;
         padding-top:50px;
     }
+    input.error {
+        border-color: red;
+      }
+      
+    .input-feedback {
+        color: red;
+        height: 5px;
+        margin-top: -2px;
+    }
 `;
 
 export default globalStyles;
