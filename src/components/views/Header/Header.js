@@ -54,7 +54,7 @@ const PrimaryNav = styled.ul`
 `;
 
 const RightMenu = styled.ul`
-  padding: 0 60px;
+  padding: 5%;
 `;
 
 export default withRouter(({ location: { pathname } }) => (
@@ -69,10 +69,10 @@ export default withRouter(({ location: { pathname } }) => (
     </PrimaryNav>
     <RightMenu>
       <Item current={pathname === "/login"}>
-        <SLink to="/">Login</SLink>
+        <SLink to="/login">Login</SLink>
       </Item>
-      <Item current={pathname === "/signup"}>
-        <SLink to="/signup">Signup</SLink>
+      <Item current={pathname === "/register"}>
+        <SLink to="/register">Register</SLink>
       </Item>
     </RightMenu>
   </NavContainer>
