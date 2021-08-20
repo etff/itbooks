@@ -4,7 +4,7 @@ import { Col, Space } from "antd";
 
 function GridCards(props) {
   return (
-    <Col lg={3} md={6} xs={8}>
+    <Col lg={3} md={6} xs={12}>
       <Link to={`/book/${props.bookId}`}>
         <div style={{ position: "relative" }}>
           <img

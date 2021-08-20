@@ -1,20 +1,8 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, useHistory } from "react-router-dom";
 import styled from "styled-components";
-
-const Header = styled.header`
-  color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  background-color: rgba(20, 20, 20, 0.8);
-  z-index: 10;
-  box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.8);
-`;
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUser } from "../../../actions/userAction";
 
 const Item = styled.li`
   width: 80px;
@@ -54,26 +42,48 @@ const PrimaryNav = styled.ul`
 `;
 
 const RightMenu = styled.ul`
-  padding: 0 60px;
+  padding: 5%;
 `;
+const Header = ({ location: { pathname } }) => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const history = useHistory();
+  const onLogout = () => {
+    dispatch(logoutUser());
+    history.push("/");
+  };
 
-export default withRouter(({ location: { pathname } }) => (
-  <NavContainer>
-    <PrimaryNav>
-      <Item current={pathname === "/"}>
-        <SLink to="/">Books</SLink>
-      </Item>
-      <Item current={pathname === "/search"}>
-        <SLink to="/search">Search</SLink>
-      </Item>
-    </PrimaryNav>
-    <RightMenu>
-      <Item current={pathname === "/login"}>
-        <SLink to="/">Login</SLink>
-      </Item>
-      <Item current={pathname === "/signup"}>
-        <SLink to="/signup">Signup</SLink>
-      </Item>
-    </RightMenu>
-  </NavContainer>
-));
+  return (
+    <NavContainer>
+      <PrimaryNav>
+        <Item current={pathname === "/"}>
+          <SLink to="/">Books</SLink>
+        </Item>
+        <Item current={pathname === "/search"}>
+          <SLink to="/search">Search</SLink>
+        </Item>
+      </PrimaryNav>
+
+      <RightMenu>
+        {user.userData && !user.userData.auth ? (
+          <>
+            <Item current={pathname === "/login"}>
+              <SLink to="/login">Login</SLink>
+            </Item>
+            <Item current={pathname === "/register"}>
+              <SLink to="/register">Register</SLink>
+            </Item>
+          </>
+        ) : (
+          <Item current={pathname === "/logout"}>
+            <SLink onClick={onLogout} to="#">
+              Logout
+            </SLink>
+          </Item>
+        )}
+      </RightMenu>
+    </NavContainer>
+  );
+};
+
+export default withRouter(Header);
