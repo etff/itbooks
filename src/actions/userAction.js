@@ -26,8 +26,19 @@ export function loginUser(dataToSubmit) {
 }
 
 export function auth() {
+  const token = localStorage.getItem("token");
+  const config = {
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  if (token) {
+    config.headers["Authorization"] = "Bearer " + token;
+  }
+
   const request = axios
-    .get(`${USER_SERVER}/me`)
+    .get(`${USER_SERVER}/me`, config)
     .then((response) => response.data);
 
   return {
@@ -37,9 +48,7 @@ export function auth() {
 }
 
 export function logoutUser() {
-  const request = axios
-    .get(`${USER_SERVER}/logout`)
-    .then((response) => response.data);
+  localStorage.removeItem("token");
 
   return {
     type: LOGOUT_USER,

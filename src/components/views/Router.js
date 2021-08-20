@@ -7,6 +7,7 @@ import BookDetail from "./BookDetail/BookDetail";
 import Search from "./Search/Search";
 import Register from "./Register/Register";
 import Login from "./Login/Login";
+import Auth from "../../hoc/auth";
 
 const AppRouter = () => {
   return (
@@ -17,8 +18,8 @@ const AppRouter = () => {
           <Route exact path="/" component={MainPage} />
           <Route exact path="/book/:bookId" component={BookDetail} />
           <Route exact path="/search" component={Search} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Auth(Register, false)} />
+          <Route exact path="/login" component={Auth(Login, false)} />
         </Switch>
         <Footer />
       </>

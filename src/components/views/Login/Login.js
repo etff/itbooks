@@ -39,7 +39,7 @@ function Login(props) {
               console.log(response);
               if (response.payload.accessToken) {
                 window.localStorage.setItem(
-                  "accessToken",
+                  "token",
                   response.payload.accessToken
                 );
                 props.history.push("/");
