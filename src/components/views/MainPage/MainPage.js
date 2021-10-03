@@ -13,6 +13,16 @@ const Subject = styled.div`
   color: white;
 `;
 
+const Container = styled.div`
+  width: 100%;
+  margin: 0;
+`;
+
+const Content = styled.div`
+  width: 90%;
+  margin: 1rem auto;
+`;
+
 function MainPage() {
   const [popularBooks, setPopularBooks] = useState([]);
   const [newBooks, setNewBooks] = useState([]);
@@ -39,8 +49,8 @@ function MainPage() {
           <Loader />
         </>
       ) : (
-        <div style={{ width: "100%", margin: "0" }}>
-          <div style={{ width: "90%", margin: "1rem auto" }}>
+        <Container>
+          <Content>
             <Helmet>
               <title>Home</title>
             </Helmet>
@@ -78,8 +88,8 @@ function MainPage() {
                   </React.Fragment>
                 ))}
             </Row>
-          </div>
-        </div>
+          </Content>
+        </Container>
       )}
     </>
   );

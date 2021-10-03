@@ -94,7 +94,7 @@ function Register(props) {
               type="flex"
               justify="center"
               align="middle"
-              style={{ minHeight: "100vh" }}
+              style={{ minHeight: "50vh" }}
             >
               <Col>
                 <Title
