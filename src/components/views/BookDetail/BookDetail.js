@@ -4,9 +4,9 @@ import axios from "axios";
 import styled from "styled-components";
 import BookInfo from "./sections/BookInfo";
 import Loader from "../commons/Loader";
-import { MessageOutlined, LikeOutlined, StarOutlined } from "@ant-design/icons";
+import { LikeOutlined, StarOutlined } from "@ant-design/icons";
 import Helmet from "react-helmet";
-import { Link } from "react-router-dom";
+import Comments from "./sections/Comments";
 const { Title } = Typography;
 
 const Container = styled.div`
@@ -66,16 +66,34 @@ const IconText = ({ icon, text }) => (
 function BookDetail(props) {
   const bookId = props.match.params.bookId;
   const [book, setBook] = useState([]);
+  const [commentList, setCommentList] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchBook = async () => {
       const result = await axios(`/api/v1/books/${bookId}`);
       setBook(result.data.item[0]);
       setLoading(false);
     };
-    fetchData();
+
+    const fetchComments = async () => {
+      const result = await axios(`/api/v1/comments/${bookId}`);
+      setCommentList(result.data);
+    };
+    fetchComments();
+    fetchBook();
   }, []);
+
+  const updateComment = (newComment) => {
+    setCommentList(commentList.concat(newComment));
+  };
+
+  const deleteComment = (commentId) => {
+    const updateList = commentList.filter(function (comment) {
+      return comment.id !== commentId;
+    });
+    setCommentList(updateList);
+  };
 
   return (
     <div>
@@ -127,6 +145,12 @@ function BookDetail(props) {
             </Data>
           </Content>
           <BookInfo book={book} />
+          <Comments
+            commentList={commentList}
+            isbn={book.isbn}
+            refreshFunction={updateComment}
+            deleteFunction={deleteComment}
+          />
         </Container>
       )}
     </div>

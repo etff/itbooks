@@ -21,11 +21,11 @@ function Login(props) {
       }}
       validationSchema={Yup.object().shape({
         email: Yup.string()
-          .email("Email is invalid")
-          .required("Email is required"),
+          .email("잘못된 Email")
+          .required("이메일을 입력해주세요"),
         password: Yup.string()
           .min(4, "Password must be at least 4 characters")
-          .required("Password is required"),
+          .required("비밀번호를 입력해주세요"),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -43,11 +43,11 @@ function Login(props) {
                 );
                 props.history.push("/");
               } else {
-                setFormErrorMessage("Check out your Account or Password again");
+                setFormErrorMessage("아이디나 비밀번호를 다시 확인하세요");
               }
             })
             .catch((err) => {
-              setFormErrorMessage("Check out your Account or Password again");
+              setFormErrorMessage("아이디나 비밀번호를 다시 확인하세요");
               setTimeout(() => {
                 setFormErrorMessage("");
               }, 3000);
@@ -77,7 +77,7 @@ function Login(props) {
               type="flex"
               justify="center"
               align="middle"
-              style={{ minHeight: "100vh" }}
+              style={{ minHeight: "50vh" }}
             >
               <Col>
                 <Title level={1} style={{ color: "white" }}>
