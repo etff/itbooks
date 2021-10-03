@@ -33,13 +33,15 @@ export function auth() {
       "Content-Type": "application/json",
     },
   };
+
   if (token) {
     config.headers["Authorization"] = "Bearer " + token;
   }
 
   const request = axios
     .get(`${USER_SERVER}/me`, config)
-    .then((response) => response.data);
+    .then((response) => response.data)
+    .catch((error) => error.response);
 
   return {
     type: AUTH_USER,
